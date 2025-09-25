@@ -30,10 +30,10 @@ const AddCategory = () => {
                 <legend className="fieldset-legend">Add Category</legend>
 
                 <label className="label">Name</label>
-                <input type="text" className="input w-[100%]" placeholder="Name" />
+                <input type="text" className="input w-[100%]" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
 
                 <label className="label">Upload Image</label>
-                <input type="file" className="input w-[100%]" />
+                <input type="file" className="input w-[100%]" onChange={(e) => setImage(e.target.files[0])} />
 
                 <button className='bg-black text-white w-[100%] py-2'>Add</button>
             </fieldset>
