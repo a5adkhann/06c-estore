@@ -8,6 +8,8 @@ import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import DashboardLayout from './dashboard/DashboardLayout'
+import Categories from './dashboard/Categories'
+import AddCategory from './dashboard/AddCategory'
 
 const App = () => {
   return (
@@ -26,7 +28,8 @@ const App = () => {
 
 
               <Route path="/dashboard" element={<DashboardLayout/>}>
-              
+                  <Route path="categories" element={<Categories/>}></Route>
+                  <Route path="categories/addcategory" element={<AddCategory/>}></Route>
               </Route>
             </Routes>
         </BrowserRouter>

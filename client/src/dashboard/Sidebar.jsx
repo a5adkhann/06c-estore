@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { Menu, X, Home, ShoppingBag, Users, BarChart2, Settings, LogOut } from "lucide-react";
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { name: "Dashboard", icon: <Home className="h-5 w-5" />, href: "/admin/dashboard" },
-    { name: "Orders", icon: <ShoppingBag className="h-5 w-5" />, href: "/admin/orders" },
-    { name: "Products", icon: <ShoppingBag className="h-5 w-5" />, href: "/admin/products" },
-    { name: "Customers", icon: <Users className="h-5 w-5" />, href: "/admin/customers" },
-    { name: "Analytics", icon: <BarChart2 className="h-5 w-5" />, href: "/admin/analytics" },
-    { name: "Settings", icon: <Settings className="h-5 w-5" />, href: "/admin/settings" },
+    { name: "Dashboard", icon: <Home className="h-5 w-5" />, href: "dashboard" },
+    { name: "Orders", icon: <ShoppingBag className="h-5 w-5" />, href: "orders" },
+    { name: "Products", icon: <ShoppingBag className="h-5 w-5" />, href: "products" },
+    { name: "Categories", icon: <ShoppingBag className="h-5 w-5" />, href: "categories" },
+    { name: "Customers", icon: <Users className="h-5 w-5" />, href: "customers" },
+    { name: "Analytics", icon: <BarChart2 className="h-5 w-5" />, href: "analytics" },
+    { name: "Settings", icon: <Settings className="h-5 w-5" />, href: "settings" },
   ];
 
   return (
@@ -26,7 +28,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed md:static top-0 left-0 h-full w-64 bg-gray-900 text-gray-200 shadow-lg transform transition-transform duration-300 z-40 
+        className={`fixed md:static top-0 left-0 h-[100vh] w-64 bg-gray-900 text-gray-200 shadow-lg transform transition-transform duration-300 z-40 
         ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
         <div className="p-6 flex flex-col h-full">
@@ -36,14 +38,14 @@ const Sidebar = () => {
           {/* Nav Links */}
           <nav className="flex-1 space-y-4">
             {links.map((link, idx) => (
-              <a
+              <Link
                 key={idx}
-                href={link.href}
+                to={link.href}
                 className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-800 transition"
               >
                 {link.icon}
                 <span>{link.name}</span>
-              </a>
+              </Link>
             ))}
           </nav>
 

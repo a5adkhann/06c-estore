@@ -1,8 +1,9 @@
 import React from "react";
 import DashboardSidebar from "./Sidebar";
 import DashboardTopNavbar from "./TopNavbar";
+import { Outlet } from "react-router-dom";
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
@@ -15,11 +16,7 @@ const DashboardLayout = ({ children }) => {
 
         {/* Page Content */}
         <main className="flex-1 p-6 overflow-y-auto">
-          {children || (
-            <div className="text-gray-700 text-lg">
-              Welcome to your <span className="font-semibold">Admin Dashboard</span> 🚀
-            </div>
-          )}
+          <Outlet/>
         </main>
       </div>
     </div>
