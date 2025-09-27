@@ -10,6 +10,8 @@ import Register from './pages/Register'
 import DashboardLayout from './dashboard/DashboardLayout'
 import Categories from './dashboard/Categories'
 import AddCategory from './dashboard/AddCategory'
+import ProductsTable from './dashboard/ProductsTable'
+import AddProduct from './dashboard/AddProduct'
 
 const App = () => {
   return (
@@ -30,6 +32,8 @@ const App = () => {
               <Route path="/dashboard" element={<DashboardLayout/>}>
                   <Route path="categories" element={<Categories/>}></Route>
                   <Route path="categories/addcategory" element={<AddCategory/>}></Route>
+                  <Route path="products" element={<ProductsTable/>}></Route>
+                  <Route path="products/addproduct" element={<AddProduct/>}></Route>
               </Route>
             </Routes>
         </BrowserRouter>

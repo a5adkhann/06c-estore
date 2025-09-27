@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 const AddCategory = () => {
 
@@ -6,17 +7,16 @@ const AddCategory = () => {
     const [image, setImage] = useState(null);
 
     const handleSubmssion = async(e) => {
-
-        const formData = new Form();
+        e.preventDefault();
+        const formData = new FormData();
 
         formData.append("name", name);
         formData.append("image", image);
 
-
-        e.preventDefault();
         try{
             const response = await axios.post("http://localhost:3000/addcategory", formData);
             console.log(response);
+            setName("");
         }   
         catch(err){
             console.log(err);
@@ -25,7 +25,7 @@ const AddCategory = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmssion}>
+            <form onSubmit={handleSubmssion} enctype="multipart/form-data">
             <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-[100%] border p-4">
                 <legend className="fieldset-legend">Add Category</legend>
 
