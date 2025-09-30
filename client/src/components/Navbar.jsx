@@ -21,14 +21,8 @@ const Navbar = () => {
             <a href="/about" className="text-gray-700 hover:text-blue-600">About</a>
             <a href="/contact" className="text-gray-700 hover:text-blue-600">Contact</a>
 
-            {/* Search Bar */}
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search products..."
-                className="border rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+             <a href="/dashboard" className="text-gray-700 hover:text-blue-600">Dashboard</a>
+
 
             {/* Cart Icon */}
             <button className="relative">

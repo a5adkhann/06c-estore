@@ -38,6 +38,16 @@ app.post("/addcategory", upload.single("image"), async(req, res) => {
     }
 })
 
+app.get("/getcategory", async(req, res) => {
+    try {
+        const categories = await Category.find();
+        res.status(200).send({message: "Category Fetched", categories});
+    }
+    catch(err){
+        console.log(err);
+    }
+})
+
 app.post("/addproduct", upload.single("image"), async(req, res) => {
     try {
         const {name, price, quantity, category} = req.body;
@@ -50,6 +60,16 @@ app.post("/addproduct", upload.single("image"), async(req, res) => {
     }
 })
 
+
+app.get("/getproduct", async(req, res) => {
+    try {
+        const products = await Product.find();
+        res.status(200).send({message: "Products Fetched", products});
+    }
+    catch(err){
+        console.log(err);
+    }
+})
 
 
 

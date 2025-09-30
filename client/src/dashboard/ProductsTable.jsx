@@ -1,50 +1,68 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const ProductsTable = () => {
-    return (
-        <>
-            <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-                <table className="table">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* row 1 */}
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                        </tr>
-                        {/* row 2 */}
-                        <tr>
-                            <th>2</th>
-                            <td>Hart Hagerty</td>
-                            <td>Desktop Support Technician</td>
-                            <td>Purple</td>
-                        </tr>
-                        {/* row 3 */}
-                        <tr>
-                            <th>3</th>
-                            <td>Brice Swyre</td>
-                            <td>Tax Accountant</td>
-                            <td>Red</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+  const [products, setProducts] = useState([]);
 
-            <Link to="addproduct">Add</Link>
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/getproduct");
+      console.log(response);
+      setProducts(response.data.products);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
 
-        </>
-    )
+  useEffect(() => {
+    fetchProducts();
+  })
+
+
+  return (
+    <>
+      <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Image</th>
+              <th>Category</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((p, index) => (
+              <tr key={index}>
+                <th>{index + 1}</th>
+                <td>{p.name}</td>
+                <td>{p.price}</td>
+                <td>{p.quantity}</td>
+                <td>
+                    <img src={`http://localhost:3000/uploads/${p.image}`} alt="" width={100} />
+                </td>
+                <td>{p.category}</td>
+                <td>
+                  <button className="btn btn-outline btn-info">Edit</button>
+                  <button className="btn btn-outline btn-error">Delete</button>
+                </td>
+              </tr>
+            ))}
+
+          </tbody>
+        </table>
+      </div>
+
+      <Link to="addproduct">Add</Link>
+
+    </>
+  )
 }
 
 export default ProductsTable
