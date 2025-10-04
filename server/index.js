@@ -1,8 +1,10 @@
 const express = require("express");
 const Category = require("./models/category");
 const Product = require("./models/product");
+const Registeration = require("./models/registeration");
 const connectDB = require("./config/db_connection");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const multer  = require('multer')
 const path = require("path");
 const app = express();
@@ -72,8 +74,35 @@ app.get("/getproduct", async(req, res) => {
 })
 
 
+app.post("/register", async(req, res) => {
+    try{
+        const {name, email, password} = req.body;
+
+        const hashPassword = await bcrypt.hash(password, 10);
+        await Registeration.insertOne({name, email, password: hashPassword});
+    }
+    catch(err){
+        console.log(err);
+    }
+})
 
 
+app.post("/login", async(req, res) => {
+    try{
+        const {email, password} = req.body;
+
+       const registeredUser = await Registeration.findOne({email: email});
+       if(registeredUser){
+        const isMatch = await bcrypt.compare(password, registeredUser.password);
+        if(isMatch){
+            res.status(200).send({mesage: "Login Successfully", registeredUser});
+        }
+       }
+    }
+    catch(err){
+        console.log(err);
+    }
+})
 
 
 

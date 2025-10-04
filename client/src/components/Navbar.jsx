@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { ShoppingCart, Menu, X } from "lucide-react";
+import { Link } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({logoutUser}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -21,7 +22,7 @@ const Navbar = () => {
             <a href="/about" className="text-gray-700 hover:text-blue-600">About</a>
             <a href="/contact" className="text-gray-700 hover:text-blue-600">Contact</a>
 
-             <a href="/dashboard" className="text-gray-700 hover:text-blue-600">Dashboard</a>
+             <Link to="/dashboard" className="text-gray-700 hover:text-blue-600">Dashboard</Link>
 
 
             {/* Cart Icon */}
@@ -32,12 +33,8 @@ const Navbar = () => {
               </span>
             </button>
 
-            {/* Auth Buttons */}
-            <button className="px-3 py-1 border rounded-lg text-gray-700 hover:bg-gray-100">
-              Login
-            </button>
-            <button className="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-              Sign Up
+            <button onClick={logoutUser}>
+              Logout
             </button>
           </div>
 
@@ -63,15 +60,6 @@ const Navbar = () => {
             placeholder="Search products..."
             className="w-full border rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-
-          <div className="flex items-center space-x-4">
-            <button className="px-3 py-1 border rounded-lg text-gray-700 hover:bg-gray-100">
-              Login
-            </button>
-            <button className="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-              Sign Up
-            </button>
-          </div>
         </div>
       )}
     </nav>
