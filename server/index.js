@@ -63,7 +63,7 @@ app.post("/addproduct", upload.single("image"), async(req, res) => {
 })
 
 
-app.get("/getproduct", async(req, res) => {
+app.get("/getproducts", async(req, res) => {
     try {
         const products = await Product.find();
         res.status(200).send({message: "Products Fetched", products});

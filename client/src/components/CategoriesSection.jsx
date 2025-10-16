@@ -18,7 +18,7 @@ const CategoriesSection = () => {
 
   useEffect(() => {
     fetchCategories();
-  })
+  }, [])
 
 
   return (
